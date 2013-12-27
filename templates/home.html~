@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Twitter-Multunus-Puzzle</title>
+   <h1> Twitter-Multunus-Puzzle <h1>
+  <style type="text/css">
+            body {
+                   background-image: url('../static/img/watch_minimized.png');
+                   background-size: cover;
+
+            }
+        </style>
+ 
+ <strong><link rel="stylesheet" href="{{ url_for('static', filename='css/main3.css') }}"></strong>
+</head>
+<body>
+ <div>
+ <input type="image" id="myimage"  src="{{url_for('static',filename='img/firefox.png')}}" value="firefox.png" onclick="load(this.value)" />
+ <input type="image" id="myimage" src="{{url_for('static',filename='img/BillGates.JPG')}}" value="BillGates.JPG" onclick="load(this.value)" />
+ <input type="image" id="myimage" src="{{url_for('static',filename='img/martinfowler.jpg')}}" value="martinfowler.jpg" onclick="loa(this.value)" />
+ <input type="image" id="myimage" src="{{url_for('static',filename='img/spolsky.jpeg')}}" value="spolsky.jpeg" onclick="load(this.value)" />
+ <input type="image" id="myimage" src="{{url_for('static',filename='img/dhh.jpeg')}}" value="dhh.jpeg" onclick="load(this.value)" />
+ <input type="image" id="myimage" src="{{url_for('static',filename='img/gvanrossum.jpg')}}" value="gvanrossum.jpg" onclick="load(this.value)" />
+ <input type="image" id="myimage" src="{{url_for('static',filename='img/twitter.png')}}" value="twitter.png" onclick="load(this.value)" />
+ <input type="image" id="myimage" src="{{url_for('static',filename='img/github.png')}}" value="github.png" onclick="load(this.value)" />
+ <input type="image" id="myimage" src="{{url_for('static',filename='img/timoreilly.jpeg')}}" value="timoreilly.jpeg" onclick="load(this.value)" />
+
+</div> 
+<script type="text/javascript">
+function load(cvalue){
+document.location.href="/"+cvalue;
+}
+</script>
+</body>
+
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Circular Layout</title>
+
+<style type="text/css">
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: url(circle.gif) center 100px no-repeat;
+	width: 1000px;
+	margin: 100px auto;
+	clear: both;
+}
+
+ul {margin-top: -60px;}
+
+
+li {
+	position: relative;
+	margin: 0 auto;
+	height: 70px;
+	list-style: none;
+}
+li a {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+li a.first {left: 0;}
+li a img {border: 0;}
+
+li.nth-0, 
+li.nth-8 {width: 204px;}
+li.nth-1, 
+li.nth-7 {width: 350px;}
+li.nth-2, 
+li.nth-6 {width: 450px;}
+li.nth-3, 
+li.nth-5 {width: 513px;}
+
+li.nth-4 {width: 555px;}
+
+li.nth-0 {position: relative; top: 30px;} 
+li.nth-8 {position: relative; top: -30px;}
+
+.centre {
+	position:absolute;
+	left: 50%;
+	margin-left: -30px;
+}
+.nth-0 .centre {top: -28px;}
+.nth-8 .centre {top: 28px;}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+<ul>
+
+	<li class="nth-0"><a href="#img" class="centre"><img src="img.gif" height="60" width="60" alt="0" /></a></li>
+	
+    <li class="nth-2"><a href="#img" class="first"><img src="img.gif" height="60" width="60" alt="0" /></a><a href="#img"><img src="img.gif" height="60" width="60" alt="0" /></a></li>
+    <li class="nth-3"><a href="#img" class="first"><img src="img.gif" height="60" width="60" alt="0" /></a><a href="#img"><img src="img.gif" height="60" width="60" alt="0" /></a></li>
+    <li class="nth-4"><a href="#img" class="first"><img src="img.gif" height="60" width="60" alt="0" /></a><a href="#img"><img src="img.gif" height="60" width="60" alt="0" /></a></li>
+    <li class="nth-5"><a href="#img" class="first"><img src="img.gif" height="60" width="60" alt="0" /></a><a href="#img"><img src="img.gif" height="60" width="60" alt="0" /></a></li>
+    <li class="nth-6"><a href="#img" class="first"><img src="img.gif" height="60" width="60" alt="0" /></a><a href="#img"><img src="img.gif" height="60" width="60" alt="0" /></a></li>
+    <li class="nth-7"><a href="#img" class="first"><img src="img.gif" height="60" width="60" alt="0" /></a><!--<a href="#img" style="position:absolute; top: 50px; left: 50%; margin-left: -30px;"><img src="img.gif" height="60" width="60" alt="0" /></a>--><a href="#img"><img src="img.gif" height="60" width="60" alt="0" /></a></li>
+    <li class="nth-8"><a href="#img" class="first"><img src="img.gif" height="60" width="60" alt="0" /></a><a href="#img" class="centre"><img src="img.gif" height="60" width="60" alt="0" /></a><a href="#img"><img src="img.gif" height="60" width="60" alt="0" /></a></li>
+</ul>
+
+
+</body>
+</html>
+

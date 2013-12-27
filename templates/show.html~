@@ -1,0 +1,10 @@
+<%= content_tag :div, class: "tw-content" do %>
+  <%= image_tag @person.image, size: "300x300", class: "abs-center circular-img center-img" %>
+<ul class="abs-center circle-container">
+  <% fetch_twitter_score.each do |s1| %>
+    <%= content_tag :li, class: "tooltip", data: {score: s1[1]} do %>
+    <%= image_tag s1[0], size: "96x96" %>
+<% end %>
+<% end %>
+</ul>
+<% end %>
