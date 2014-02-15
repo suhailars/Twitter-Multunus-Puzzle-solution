@@ -5,14 +5,14 @@ import re
 
 #mapping tweet_id  to handle
 tweetidMap = (('github',  433346627714023425),
-				   ('timoreilly', 434542111556653056),
-				   ('twitter',  428602381920514048),
-				   ('martinfowler', 433267305544302593),
-				   ('dhh',  434032343847026688),
-				   ('gvanrossum', 434600796462673920),
-				   ('BillGates',  432924919807344641),
-				   ('spolsky', 434303745032478720),
-                   ('firefox', 434741424639049728))
+			  ('timoreilly', 434542111556653056),
+			  ('twitter',  428602381920514048),
+			  ('martinfowler', 433267305544302593),
+			  ('dhh',  434032343847026688),
+			  ('gvanrossum', 434600796462673920),
+			  ('BillGates',  432924919807344641),
+			  ('spolsky', 434303745032478720),
+              ('firefox', 434741424639049728))
 
 #authentication
 
@@ -31,7 +31,7 @@ def gallery(imagename=None):
         
     match = re.search(r'\w+', imagename)
     user=match.group() 
-	#followers = twitter.get_followers_ids(screen_name =user,count=10)
+
     username_list={}
     for handle, ids in tweetidMap:
          if handle == user:
@@ -39,9 +39,7 @@ def gallery(imagename=None):
            for tweet in retweeters:
               username_list[tweet['user']['profile_image_url_https']]=tweet['user']['followers_count']
 
-	#for i in followers[u'ids']:
-  	#	output=twitter.show_user(user_id=i) 
-  	#	username_list[output['profile_image_url_https']]=output['followers_count']
+	
 
     def get_count(a):
         return a[1] 
@@ -49,10 +47,10 @@ def gallery(imagename=None):
     items = sorted(username_list.items(), key=get_count, reverse=True)
     items=items[:10]
     posts=[] 
-  	#posts=[dict(id=i[0],author=i[1],post=i[2])
+  	
     for i in items:
             posts.append(dict(image_url=i[0],count=i[1]))
-        #print posts
+      
     imagename='img/'+imagename 
     imagename=imagename.encode('utf-8')
     posts.insert(0,imagename)
