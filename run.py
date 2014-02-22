@@ -1,18 +1,19 @@
-from twython import Twython
-from flask import *
+from twython import Twython, TwythonError, TwythonRateLimitError
+from flask import Flask, flash, redirect, render_template, url_for
 import psycopg2
 import re
+import time
 
 #mapping tweet_id  to handle
-tweetidMap = (('github',  433346627714023425),
-			  ('timoreilly', 434542111556653056),
-			  ('twitter',  428602381920514048),
-			  ('martinfowler', 433267305544302593),
-			  ('dhh',  434032343847026688),
-			  ('gvanrossum', 434600796462673920),
-			  ('BillGates',  432924919807344641),
-			  ('spolsky', 434303745032478720),
-              ('firefox', 434741424639049728))
+tweetidMap = (('github',  434396070261829633),
+			  ('timoreilly', 436988766335815680),
+			  ('twitter',  430209046017089537),
+			  ('martinfowler', 436639022367399938),
+			  ('dhh',  436919863106605057),
+			  ('gvanrossum', 436672512684879872),
+			  ('BillGates',  436893461883924481),
+			  ('spolsky', 436683216196734976),
+              ('firefox', 436923332089229312))
 
 #authentication
 
@@ -23,42 +24,44 @@ twitter = Twython(app_key='Qz1jB0SWo95w2dk6M0wq9w',
 
 
 app = Flask(__name__)
+app.secret_key = 'some_secret'
 @app.route('/')
 def home():
 	return render_template('home.html')
 @app.route('/<imagename>')
-def gallery(imagename=None):
-        
+def gallery(imagename=None):   
     match = re.search(r'\w+', imagename)
     user=match.group() 
-
-    username_list={}
-    for handle, ids in tweetidMap:
+    try:
+     username_list={}
+     for handle, ids in tweetidMap:
          if handle == user:
            retweeters=twitter.get_retweets(id=ids,count=10)
            for tweet in retweeters:
-              username_list[tweet['user']['profile_image_url_https']]=tweet['user']['followers_count']
+                 username_list[tweet['user']['profile_image_url_https']]=tweet['user']['followers_count']
+   
 
-	
-
-    def get_count(a):
+     def get_count(a):
         return a[1] 
 
-    items = sorted(username_list.items(), key=get_count, reverse=True)
-    items=items[:10]
-    posts=[] 
+     items = sorted(username_list.items(), key=get_count, reverse=True)
+     items=items[:10]
+     posts=[] 
   	
-    for i in items:
+     for i in items:
             posts.append(dict(image_url=i[0],count=i[1]))
       
-    imagename='img/'+imagename 
-    imagename=imagename.encode('utf-8')
-    posts.insert(0,imagename)
-          
-    return render_template('circle3.html',posts=posts)
-          
-  
-app.run(debug = True)
+     imagename='img/'+imagename 
+     imagename=imagename.encode('utf-8')
+     posts.insert(0,imagename)     
+     return render_template('circle3.html',posts=posts)
+    except TwythonRateLimitError,TwythonError:
+             flash("try after  some time")
+             return render_template('rate.html')
+             
+
+if __name__ == "__main__":
+ app.run(debug = True)
 
 
 

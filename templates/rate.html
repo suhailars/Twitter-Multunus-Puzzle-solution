@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Twitter-Multunus-Puzzle</title>
+   <h1> Twitter-Multunus-Puzzle <h1>
+  <style type="text/css">
+            body {
+                   background-image: url('../static/img/watch_minimized.png');
+                   background-size: cover;
+
+            }
+        </style>
+ <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css" rel="stylesheet">
+ <strong><link rel="stylesheet" href="{{ url_for('static', filename='css/main3.css') }}"></strong>
+ {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+ {% endwith %} 
+</head>
+<body>
+ <button id="movebtn" class="btn btn-info btn-large" onclick="history.back(-1)">back</button>
+</body>
+</html>
